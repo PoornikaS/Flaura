@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login and Signup</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm2fW5H+xbviSZIXtI6O2G1SpND3xhdWo+NVMXnzOFpElh7Nxd+R5e41s3sSyNBcECfZzMjnpW2g9qMLHQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Style.css */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #e83e8c1f !important; /* Updated background color */
+      }
+
+      .container {
+        max-width: 400px;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+
+      .form-toggle {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .form-toggle .toggle-btn {
+        padding: 10px 25px;
+        background: #f2f2f2;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .form-toggle .toggle-btn.active {
+        background: #9c27b0;
+        color: #fff;
+      }
+
+      .form-wrap {
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-wrap form {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        transition: transform 0.5s ease;
+      }
+
+      .form-wrap form.active {
+        transform: translateX(0);
+      }
+
+      .form-wrap form.inactive {
+        transform: translateX(-100%);
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .input-field {
+        position: relative;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .input-field i {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: #bbb;
+      }
+
+      .input-field input {
+        width: 100%;
+        padding: 10px 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 16px;
+      }
+
+      .input-field input:focus {
+        border-color: #9c27b0;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 10px;
+        background: #9c27b0;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #e91e63;
+      }
+
+      .form-text {
+        font-size: 14px;
+        margin-top: 20px;
+      }
+
+      .toggle-link {
+        color: #9c27b0;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .toggle-link:hover {
+        text-decoration: underline;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f3f4f6;
+      }
+
+      .container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-toggle {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .form-toggle button {
+        border: none;
+        background: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #333;
+        transition: color 0.3s ease;
+      }
+
+      .form-wrap {
+        position: relative;
+      }
+
+      .form-wrap form {
+        display: none;
+      }
+
+      .form-wrap form.active {
+        display: block;
+      }
+
+      .form-text {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .form-text .toggle-link {
+        color: #3498db;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <input type="checkbox" id="button" />
+      <label for="button"><i class="fa-solid fa-bars"></i></label>
+      <a href="#" class="logo"><span>Flaura</span></a>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about"> About </a>
+        <a href="#products"> Product </a>
+        <a href="#review"> Review </a>
+        <a href="#contact"> Contact </a>
+        <a href="#"> Occasion </a>
+      </nav>
+      <div class="icons">
+        <a href="./wishlist.html"><i class="fa-solid fa-heart"></i></a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="./profile.html"><i class="fa-solid fa-user"></i></a>
+      </div>
+    </header>
+    <div class="container">
+      <div class="form-toggle">
+        <button class="toggle-btn active" data-form="signup">Sign Up</button>
+        <button class="toggle-btn" data-form="login">Login</button>
+      </div>
+      <div class="form-wrap">
+        <form class="signup-form active">
+          <h2 class="title">Sign Up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              placeholder="Username"
+              id="signupUsername"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" id="signupEmail" required />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              id="signupPassword"
+              required
+            />
+          </div>
+          <input type="submit" class="btn" value="Sign Up" />
+          <p class="form-text">
+            Already have an account?
+            <span class="toggle-link" data-form="login">Login</span>
+          </p>
+        </form>
+        <form class="login-form">
+          <h2 class="title">Login</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              placeholder="Username"
+              id="loginUsername"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              id="loginPassword"
+              required
+            />
+          </div>
+          <input type="submit" value="Login" class="btn solid" />
+          <p class="form-text">
+            Don't have an account?
+            <span class="toggle-link" data-form="signup">Sign Up</span>
+          </p>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
